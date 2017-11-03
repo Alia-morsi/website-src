@@ -1,0 +1,175 @@
+/*
+font-family: 'Ubuntu Condensed', sans-serif;
+font-family: 'Play', sans-serif;
+font-family: 'Amatic SC', cursive;
+font-family: 'Rajdhani', sans-serif;
+font-family: 'Comfortaa', cursive;
+font-family: 'Economica', sans-serif;
+font-family: 'Poiret One', cursive;
+font-family: 'Cairo', sans-serif;
+font-family: 'Rozha One', serif;
+font-family: 'Oswald', sans-serif;
+font-family: 'Changa', sans-serif;
+*/
+
+body {
+	background-color: white;
+	font-size: 16px;
+	color: #fff;
+	font-family: sans-serif;
+}
+.title{
+	color: black;
+}
+.arabic{
+	font-family: 'Changa', sans-serif;
+	font-size: 24px;
+}
+.english{
+	font-family: 'Oswald', sans-serif;
+	font-size: 24px;
+}
+
+/*navbar color.. affects the small area after the nav-area*/
+.navbar{
+	background-color: white;
+}
+
+
+
+#amorsi-navbar-collapse {
+	font-family: 'Rajdhani', sans-serif;
+	color: black;
+	text-transform: uppercase;
+	/*clear: left;*/
+}
+
+/*large screens*/
+@media (min-width: 768px){
+	/*list text*/
+	#amorsi-navbar-collapse ul li a{
+		padding-top: 5px;
+		padding-bottom: 5px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	#amorsi-navbar-collapse li{
+		text-align: center;
+		width: 20%;
+		font-size: 16px;
+		border: 1px solid #F0F0F0;
+	}
+
+	.navbar-brand{
+		float: none;
+		display: inline-block;
+		overflow: hidden;
+	}
+	/*center content in header div, which only has the brand in larger
+	widths, so that the inline block is centered*/
+	.navbar-header{
+		text-align: center;
+		width: 100%;
+	}
+}
+
+
+#amorsi-navbar-collapse ul{
+	width: 100%;
+}
+#amorsi-navbar-collapse li{
+	border-top: 1px solid #F0F0F0;
+	border-bottom: 1px solid #F0F0F0;
+}
+
+/*change the hovering color*/
+#amorsi-navbar-collapse a.home:hover, 
+#amorsi-navbar-collapse a.home:active{
+	background-color: #6CC2BD;
+}
+#amorsi-navbar-collapse a.prof:hover{
+	background-color: #5A809E;
+}
+#amorsi-navbar-collapse a.soul:hover {
+	background-color: #F57D7C;
+}
+
+#amorsi-navbar-collapse a.connect:hover{
+
+	background-color: #FFC1A9;
+}
+#amorsi-navbar-collapse a.blog:hover{
+	background-color: #FEE4C4;
+}
+/*change hovering color for button*/
+.navbar-header button.navbar-toggle:hover, .navbar-header button.navbar-toggle:active{
+	background-color: #7C79A2;
+}
+
+/*main content*/
+div.main-content{
+	width: 100%;
+}
+
+div.main-content div.section{
+	/*background-color: #5A809E;*/
+	/*box-shadow: 5px 5px 2px #888888;*/
+	border: 1px solid #F0F0F0;
+}
+div.thumbnail{
+	border-radius: 0;
+	text-align: center;
+	/*box-shadow: 3px 3px 1px #888888;*/
+}
+
+/*to govern the size of all sections that will contain the site's main
+contents*/
+div.section{
+	margin: 15px;
+	padding: 15px;
+	background-color: white;
+}
+div.section h2, div.section h3{
+	color:black;
+	font-family: 'Oswald', sans-serif;
+	
+}
+/*font size of section title*/
+div.section h2{
+	font-size: 20px;
+}
+
+/*font size of thumbnail title*/
+div.section h3{
+	font-size: 16px;
+}
+
+div.section p{
+	font-family: 'Rajdhani', sans-serif;
+	/*font-family: 'Play', sans-serif;*/
+	font-size: 14px;
+}
+
+/*colors of thumbnails inside sections*/
+div.prof div.thumbnail div.colorbox{
+	width: 100%;
+	height: 100px;
+	background-color: #FEE4C4;
+}
+div.prof div.auc div.img_holder div.colorbox{
+	background-color: #6CC2BD;
+}
+div.prof div.ncr div.img_holder div.colorbox{
+	background-color: #F57D7C;
+}
+
+div.tile{
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+/*remove excess padding around the tile captions*/
+.thumbnail .caption{
+	padding: 0 0 0 0;
+}
