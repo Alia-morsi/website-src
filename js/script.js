@@ -4,7 +4,7 @@
 	
 	//utility functions:
 	var insert_html = function(selector, html){
-		$(selector).innerHTML = html;
+		document.querySelector(".main-content").innerHTML = html;
 	};
 
 	var show_loading = function(selector){
@@ -20,7 +20,8 @@
 	//this is how it was set in the ajax utils
 	global.$ajax(categories_snippet, 
 		function(responseText){
-			$(".main-content").innerHTML = responseText;
+			console.log(responseText);
+			document.querySelector(".main-content").innerHTML = responseText;
 		}, 
 		false);
 	});

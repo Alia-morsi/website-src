@@ -34,7 +34,6 @@ the global function name. The course method is probably cleaner..
 				}
 			}
 		}
-
 		xhttp.open('GET', request_url, true);
 		xhttp.send();
 	}
