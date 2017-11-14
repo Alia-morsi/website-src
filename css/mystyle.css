@@ -35,8 +35,6 @@ body {
 	background-color: white;
 }
 
-
-
 #amorsi-navbar-collapse {
 	font-family: 'Rajdhani', sans-serif;
 	color: black;
@@ -166,4 +164,27 @@ div.tile{
 /*remove excess padding around the tile captions*/
 .thumbnail .caption{
 	padding: 0 0 0 0;
+}
+
+/*footer*/
+.panel-footer{
+	background-color: #7C79A2;
+	color: white;
+	border: 1px solid #F0F0F0;
+	font-size: 12px;
+	font-family: 'Rajdhani', sans-serif;
+}
+
+.panel-footer h3{
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+.panel-footer .credit{
+	text-align: center;
+	font-family: 'Oswald', sans-serif;
+	font-size: 10px;
+}
+.panel-footer .contact span{
+	float: right;
 }
