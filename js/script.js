@@ -29,11 +29,16 @@
 	var categories_array = [
 	{ 
 		name: "Professional", 
-		tiles: ["KarmSolar", "NCR", "AUC", "Other", "Awards"]
+		tiles: ["KarmSolar", "NCR", "AUC", "Other", "Awards"],
+		colors: ["#6CC2BD", "#5A809E", "#F57D7C", "#FFC1A9", "#FEE4C4"],
+		icons: ["solar-battery", "atm", "mortarboard", 
+				"light-bulb", "add-star"]
 	},
 	{
 		name:"Soul Food",
-		tiles: ["Vocal (CVT)", "Pilates", "Music Theory", "Portuguese"] 
+		tiles: ["Vocal (CVT)", "Pilates", "Music Theory", "Portuguese"], 
+		colors: ["#6CC2BD", "#5A809E", "#F57D7C", "#FFC1A9"],
+		icons: ["karaoke", "pilates", "music-stave", "rio"]
 	}];
 
 	var generate_main_pg = function(categories_array,
@@ -42,11 +47,18 @@
 		for(var cat=0; cat<categories_array.length; cat++){
 			var tileshtml = "";
 			var cat_tiles = categories_array[cat].tiles;
+			var cat_colors = categories_array[cat].colors;
+			var cat_icons = categories_array[cat].icons;
+
 			for(var tile=0; tile<cat_tiles.length; tile++){
-				tileshtml += insert_property(gen_tile_snippet, "tilename", 
+				var newtile = insert_property(gen_tile_snippet, "tilename", 
 											cat_tiles[tile]);
 
+				newtile = insert_property(newtile, "col", cat_colors[tile]);
+				newtile = insert_property(newtile, "icon", cat_icons[tile]);
+				tileshtml += newtile;
 			}
+
 			var sub =  insert_property(gen_category_snippet, "row_contents", 
 									tileshtml);
 			sub = insert_property(sub, "category_name", 

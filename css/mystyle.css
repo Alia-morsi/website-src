@@ -155,13 +155,7 @@ div.section p{
 div.prof div.thumbnail div.colorbox{
 	width: 100%;
 	height: 100px;
-	background-color: #FEE4C4;
-}
-div.prof div.auc div.img_holder div.colorbox{
-	background-color: #6CC2BD;
-}
-div.prof div.ncr div.img_holder div.colorbox{
-	background-color: #F57D7C;
+	/*background-color: #FEE4C4;*/ /*will be modified from file*/ 
 }
 
 div.tile{
