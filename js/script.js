@@ -35,7 +35,7 @@
 				"light-bulb", "add-star"]
 	},
 	{
-		name:"Soul Food",
+		name:"Personal",
 		tiles: ["Vocal (CVT)", "Pilates", "Music Theory", "Portuguese"], 
 		colors: ["#6CC2BD", "#5A809E", "#F57D7C", "#FFC1A9"],
 		icons: ["karaoke", "pilates", "music-stave", "rio"]
