@@ -188,3 +188,17 @@ div.tile{
 .panel-footer .contact span{
 	float: right;
 }
+
+#contact-icons{
+	position: relative;
+	height: 30px;
+}
+#contact-icons a{
+	float: left;
+	margin-right: 10px;
+}
+
+.email-box img{
+	margin-right: 10px;
+}
+
