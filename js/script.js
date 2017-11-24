@@ -9,8 +9,10 @@
 	};
 
 	var show_loading = function(selector){
-		var html = "<div class='text-center'>";
-		html += "<img src='images/ajax-loader.gif'></div>"
+		
+		var html = "<div class='text-center' style='position: relative; top:110px;'>";
+		html += "<img src='images/ajax-loader.gif'></div>";
+	
 		insert_html(selector, html);
 	}
 
@@ -74,8 +76,8 @@
 	//our response handler only takes the response text object..
 	//this is how it was set in the ajax utils
 	
-
-	global.$ajax(category_snippet, 
+/*replace empty with category_snippet*/
+	global.$ajax("category_snippet", 
 		function(responseText){
 			var category;
 			var category_tile;
