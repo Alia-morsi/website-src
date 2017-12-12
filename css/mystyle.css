@@ -15,7 +15,7 @@ font-family: 'Changa', sans-serif;
 body {
 	background-color: white;
 	font-size: 16px;
-	color: #fff;
+	color: black;
 	font-family: sans-serif;
 }
 .title{
@@ -168,7 +168,7 @@ div.tile{
 
 /*footer*/
 .panel-footer{
-	background-color: #7C79A2;
+	background-image: url(../images/bkgnds/random_grey_variations/random_grey_variations.png);
 	color: white;
 	border: 1px solid #F0F0F0;
 	font-size: 12px;
@@ -201,4 +201,19 @@ div.tile{
 .email-box img{
 	margin-right: 10px;
 }
+
+div.profpage{
+	/*background-image: url(../images/bkgnds/light_grey/light_grey.png);*/
+}
+
+ul.profpage{
+	list-style: none;
+	list-style-position: inside;
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+}
+
+
+
 

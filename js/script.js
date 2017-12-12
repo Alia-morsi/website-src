@@ -2,10 +2,13 @@
 (function(global){
 	var category_snippet = "snippets/homepage/categories.html";
 	var tile_snippet = "snippets/homepage/category-tiles.html";
+	var professional_snippet = "snippets/professional/professional.html";
+	var personal_snippet = "snippets/personal/personal.html";
+	var cv_snippet = "";
 	
 	//utility functions:
-	var insert_html = function(selector, html){
-		document.querySelector(".main-content").innerHTML = html;
+	var insert_html = function(html, selector){
+		document.querySelector(selector).innerHTML = html;
 	};
 
 	var show_loading = function(selector){
@@ -13,7 +16,7 @@
 		var html = "<div class='text-center' style='position: relative; top:110px;'>";
 		html += "<img src='images/ajax-loader.gif'></div>";
 	
-		insert_html(selector, html);
+		insert_html(html, selector);
 	}
 
 	//text substitution utility
@@ -69,32 +72,56 @@
 		}
 		return res;
 	}
-	
-	$(function(){
+
+	var show_professional_page = function(){
 		show_loading(".main-content");
+		global.$ajax(professional_snippet, function(responseText){
+			insert_html(responseText, ".main-content");
+		},
+		false);
+	}
 
-	//our response handler only takes the response text object..
-	//this is how it was set in the ajax utils
-	
-/*replace empty with category_snippet*/
-	global.$ajax("category_snippet", 
-		function(responseText){
-			var category;
-			var category_tile;
+	var show_personal_page = function(){
+
+	}
+
+	var show_cv_page = function(){
+
+	}
+
+	var show_main_content = function(){
+		show_loading(".main-content");
+		//our response handler only takes the response text object..
+		//this is how it was set in the ajax utils
+		/*replace empty with category_snippet*/
+
+		global.$ajax(category_snippet, 
+			function(responseText){
+				var category;
+				var category_tile;
 			
-			category = responseText;
+				category = responseText;
 
-			global.$ajax(tile_snippet,
-				function(responseText){
+				global.$ajax(tile_snippet,
+					function(responseText){
 					category_tile = responseText;
 					document.querySelector(".main-content").innerHTML=
 						generate_main_pg(categories_array, category, 
 							category_tile);
 				},
-			false);
+				false);
 		}, 
 		false);
+	}
+
+	$(function(){
+		show_main_content();
 	});
+
+	global.$show_main_content = show_main_content;
+	global.$show_professional_page = show_professional_page;
+	global.$show_cv_page = show_cv_page;
+	global.$show_personal_page = show_personal_page;
 	
 })(window); //there was no need to pass the window obj as we're not exposing
 			//anything
