@@ -4,6 +4,7 @@
 	var tile_snippet = "snippets/homepage/category-tiles.html";
 	var professional_snippet = "snippets/professional/professional.html";
 	var personal_snippet = "snippets/personal/personal.html";
+	var professional_tile_snippet = "snippets/professional/tiles.html";
 	var cv_snippet = "";
 	
 	//utility functions:
@@ -46,6 +47,9 @@
 		icons: ["karaoke", "pilates", "music-stave", "rio"]
 	}];
 
+	var professional_array = [
+	];
+
 	var generate_main_pg = function(categories_array,
 	 gen_category_snippet, gen_tile_snippet){
 		var res="";
@@ -73,12 +77,30 @@
 		return res;
 	}
 
+	var generate_professional_page = function(professional_array,
+		professional_snippet, professional_tile_snippet){
+		var res="";
+		/*simple function for now*/
+		res = insert_property(professional_snippet, "tiles", 
+				professional_tile_snippet);
+		return res;
+	}
+
 	var show_professional_page = function(){
 		show_loading(".main-content");
+		
 		global.$ajax(professional_snippet, function(responseText){
-			insert_html(responseText, ".main-content");
+			var professional_html=responseText;
+			global.$ajax(professional_tile_snippet, function(responseText){
+				var html = generate_professional_page(professional_array, 
+					professional_html, responseText);
+				insert_html(html, ".main-content");
+			}, 
+			false);
 		},
 		false);
+
+		
 	}
 
 	var show_personal_page = function(){
