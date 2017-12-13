@@ -6,6 +6,13 @@
 	var personal_snippet = "snippets/personal/personal.html";
 	var professional_tile_snippet = "snippets/professional/tiles.html";
 	var cv_snippet = "";
+
+	//color scales:
+	var green_scale = ["#6CC2BD", "#89CECA", "#A6DAD7", "#C4E6E4", "#E1F2F1", "#FFFFFF"];
+	var teal_scale = ["#5A809E", "#7B99B1", "#9CB2C4", "#BDCCD8", "#DEE5EB", "#FFFFFF"];
+	var pink_scale = ["#F57D7C", "#F79796", "#F9B1B0", "#FBCBCA", "#FDE5E4", "#FFFFFF"];
+	var salmon_scale = ["#FFC1A9", "#FFCDBA", "#FFD9CB", "#FFE6DC", "#FFF2ED", "#FFFFF"];
+	var beige_scale = ["#FEE4C4", "#FEE9CF", "#FEEEDB", "#FEF4E7", "#FEF9F3", "#FFFFFF"];
 	
 	//utility functions:
 	var insert_html = function(html, selector){
@@ -32,6 +39,7 @@
 	//tiles_array: array of strings. each belongs to a category obj
 
 	/*eventually this will be loaded from a file*/
+
 	var categories_array = [
 	{ 
 		name: "Professional", 
@@ -48,7 +56,47 @@
 	}];
 
 	var professional_array = [
-	];
+	{
+		name: "KarmSolar", 
+		tiles: ["Solar Water Pumping Port (to C++)",
+		 		 "Hybrid Solar Water Pumping (Labview)", 
+		 		 "DBSync", 
+		 		 "Single Source Solar Water Pumping (Labview)"],
+	}, 
+	{
+		name: "NCR",
+		titles: [],
+		points: [] //array of objects with the points for each
+	},
+	{
+		name: "AUC", 
+		titles: [],
+		points: []
+	}];
+
+	var html_to_dom = function(html){
+		var dom = document.createElement('div');
+		dom.innerHTML = html;
+		return dom.childNodes[0];
+	}
+
+	var generate_color_row = function(color_array, num, rowlen, snippet){
+		//rowlen is the minimum row length.
+		//it is only necessary if we apply more complicated gradients
+		//for now all rows are made of 6.
+		var tiles = [];
+		var rows = Math.ceil(num/rowlen);
+		var new_div;
+		for(var i=0; i<rows; i++){
+			for(var col=0; col<color_array.length; col++){
+				new_div = 
+				html_to_dom(insert_property
+							(snippet, "bkgnd", color_array[col%rowlen]));
+				tiles.push(new_div);
+			}
+		}
+		return tiles;
+	}
 
 	var generate_main_pg = function(categories_array,
 	 gen_category_snippet, gen_tile_snippet){
@@ -81,9 +129,20 @@
 		professional_snippet, professional_tile_snippet){
 		var res="";
 		/*simple function for now*/
-		res = insert_property(professional_snippet, "tiles", 
-				professional_tile_snippet);
-		return res;
+		var tile_info = professional_array[0].tiles;
+		var empty_tiles = generate_color_row(green_scale, 
+						tile_info.length, 6, professional_tile_snippet);
+
+		professional_snippet = insert_property(professional_snippet, "title", 
+				professional_array[0].name);
+
+		var parent = html_to_dom(professional_snippet);
+		var parent_row = parent.querySelector(".row");
+
+		for(var tile_index=0; tile_index<empty_tiles.length; tile_index++){
+			parent_row.appendChild(empty_tiles[tile_index]);
+		}
+		return parent.outerHTML;
 	}
 
 	var show_professional_page = function(){
