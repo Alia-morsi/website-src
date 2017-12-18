@@ -14,10 +14,11 @@
 	var salmon_scale = ["#FFC1A9", "#FFCDBA", "#FFD9CB", "#FFE6DC", "#FFF2ED", "#FFFFF"];
 	var beige_scale = ["#FEE4C4", "#FEE9CF", "#FEEEDB", "#FEF4E7", "#FEF9F3", "#FFFFFF"];
 	
+
 	//utility functions:
 	var insert_html = function(html, selector){
 		document.querySelector(selector).innerHTML = html;
-	};
+	}
 
 	var show_loading = function(selector){
 		
@@ -55,13 +56,41 @@
 		icons: ["karaoke", "pilates", "music-stave", "rio"]
 	}];
 
+
 	var professional_array = [
 	{
 		name: "KarmSolar", 
 		tiles: ["Solar Water Pumping Port (to C++)",
 		 		 "Hybrid Solar Water Pumping (Labview)", 
 		 		 "DBSync", 
-		 		 "Single Source Solar Water Pumping (Labview)"],
+		 		 "Single Source Solar Water Pumping (Labview)", 
+		 		 "Dummy", 
+		 		 "Dummy"],
+		
+		proj_data: [{
+			description: "Lorem Ipsum dolor sit amet", 
+			image_link: "",	
+		},
+		{
+			description: "Lorem Ipsum dolor sit amet",
+			image_link: ""
+		}, 
+		{
+			description: "Lorem Ipsum dolor sit amet",
+			image_link: ""
+		},
+		{
+			description: "Lorem Ipsum dolor sit amet",
+			image_link: ""
+		},
+		{
+			description: "Lorem Ipsum dolor sit amet",
+			image_link: ""
+		},
+		{
+			description: "Lorem Ipsum dolor sit amet",
+			image_link: ""
+		}]
 	}, 
 	{
 		name: "NCR",
@@ -74,12 +103,16 @@
 		points: []
 	}];
 
+
+
 	var html_to_dom = function(html){
 		var dom = document.createElement('div');
 		dom.innerHTML = html;
 		return dom.childNodes[0];
 	}
 
+	//update function to take in the object for which
+	//we are generating a color row
 	var generate_color_row = function(color_array, num, rowlen, snippet){
 		//rowlen is the minimum row length.
 		//it is only necessary if we apply more complicated gradients
@@ -87,12 +120,31 @@
 		var tiles = [];
 		var rows = Math.ceil(num/rowlen);
 		var new_div;
+
 		for(var i=0; i<rows; i++){
 			for(var col=0; col<color_array.length; col++){
-				new_div = 
-				html_to_dom(insert_property
-							(snippet, "bkgnd", color_array[col%rowlen]));
+				//element number = i*color_array.length+col;
+				var el_num = i*color_array.length + col;
+				var tile_title;
+				var tile_desc;
+				//check if undefined would give 0
+				if(el_num < professional_array[0].tiles.length){
+					console.log(professional_array[0].tiles[el_num]);
+					tile_title = professional_array[0].tiles[el_num];
+					tile_desc = professional_array[0].proj_data[el_num].description;
+				}
+				else{
+					tile_title = "";
+					tile_desc = "";
+				}
+				
+				var temp = insert_property(snippet, "bkgnd", color_array[col%rowlen]);
+				temp = insert_property(temp, "description", tile_desc);
+				temp = insert_property(temp, "title", tile_title);
+
+				new_div = html_to_dom(temp);
 				tiles.push(new_div);
+
 			}
 		}
 		return tiles;
@@ -158,8 +210,6 @@
 			false);
 		},
 		false);
-
-		
 	}
 
 	var show_personal_page = function(){
