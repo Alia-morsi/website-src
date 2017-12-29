@@ -64,8 +64,8 @@
 		 		 "Hybrid Solar Water Pumping (Labview)", 
 		 		 "DBSync", 
 		 		 "Single Source Solar Water Pumping (Labview)", 
-		 		 "Dummy", 
-		 		 "Dummy"],
+		 		 "", 
+		 		 ""],
 		
 		proj_data: [{
 			description: "Lorem Ipsum dolor sit amet", 
