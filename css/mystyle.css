@@ -216,9 +216,16 @@ ul.profpage{
 
 /*not sure if i'll keep this*/
 div.profpage div.tile{
-	height: 50px;
+	height: 70px;
 }
 
 
+div.profpage div.tile_title{
+	text-align: center;
+}
+
+div.invisible{
+	height: 1px;
+}
 
 
