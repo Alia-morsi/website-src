@@ -217,15 +217,33 @@ ul.profpage{
 /*not sure if i'll keep this*/
 div.profpage div.tile{
 	height: 70px;
+	position: relative;
 }
 
-
-div.profpage div.tile_title{
+div.profpage .tile_title{
 	text-align: center;
 }
 
 div.invisible{
 	height: 1px;
+	position: absolute;
+	top:0;
+}
+.clickable_tile{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 10;
+	top:0;
+	left:0;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+.clickable_tile:hover, .clickable_tile:active{
+	text-decoration: none;
+	background-color: grey;
+	opacity: 0.3;
+	color: white;
 }
 
 

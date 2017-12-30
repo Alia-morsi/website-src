@@ -145,6 +145,14 @@
 				new_div = html_to_dom(temp);
 				tiles.push(new_div);
 
+				/*
+				new_div.querySelector(
+					".clickable_tile").on("click", ) = function(event){
+						console.log("Hi");};
+
+				//new_div.o= function(event){console.log("Hi");};
+				*/
+
 			}
 		}
 		return tiles;
@@ -206,6 +214,7 @@
 				var html = generate_professional_page(professional_array, 
 					professional_html, responseText);
 				insert_html(html, ".main-content");
+
 			}, 
 			false);
 		},
@@ -253,6 +262,7 @@
 	global.$show_professional_page = show_professional_page;
 	global.$show_cv_page = show_cv_page;
 	global.$show_personal_page = show_personal_page;
+
 	
 })(window); //there was no need to pass the window obj as we're not exposing
 			//anything
