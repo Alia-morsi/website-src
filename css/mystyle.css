@@ -243,7 +243,9 @@ div.invisible{
 	text-decoration: none;
 	background-color: grey;
 	opacity: 0.3;
-	color: white;
 }
 
+.clickable_tile:focus{
+	text-decoration: none;
+}
 

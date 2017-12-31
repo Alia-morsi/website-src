@@ -39,6 +39,15 @@
 		return string;
 	}
 
+	var tile_click = function(event){
+		//if we add more p.description elements then we might need to make changes
+		console.log(event.currentTarget.querySelector("p.description").innerHTML);
+	}
+
+	var tile_hover = function(event){
+
+	}
+
 	//expected structure of arrays
 	//categories_array: (array of category objects
 	//tiles_array: array of strings. each belongs to a category obj
@@ -149,9 +158,7 @@
 				new_div = html_to_dom(temp);
 				tiles.push(new_div);
 
-				new_div.addEventListener("click", function(){
-					console.log("Hit");	
-				});
+				new_div.onclick = tile_click;
 				/*
 				new_div.querySelector(
 					".clickable_tile").on("click", ) = function(event){
@@ -221,13 +228,7 @@
 			global.$ajax(professional_tile_snippet, function(responseText){
 				var dom_content = generate_professional_page(professional_array, 
 					professional_html, responseText);
-				//try converting to dom, insert it in a jquery way to main content
-				// then attach the event using the .on event handler
 
-				//var main_content_dom = html_to_dom(dom_content);
-
-				//in this function the approach for inserting child elements 
-				//changed than the mainpage so we need to clear showloading 
 				clear_loading(".main-content");
 
 				document.querySelector(".main-content").appendChild(dom_content);
