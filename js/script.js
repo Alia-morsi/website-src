@@ -28,6 +28,10 @@
 		insert_html(html, selector);
 	}
 
+	var clear_loading = function(selector){
+		document.querySelector(selector).innerHTML = "";
+	}
+
 	//text substitution utility
 	var insert_property = function(string, property, value){
 		property = "{{" + property + "}}";
@@ -145,7 +149,7 @@
 				new_div = html_to_dom(temp);
 				tiles.push(new_div);
 
-				/*
+				
 				new_div.querySelector(
 					".clickable_tile").on("click", ) = function(event){
 						console.log("Hi");};
@@ -202,7 +206,8 @@
 		for(var tile_index=0; tile_index<empty_tiles.length; tile_index++){
 			parent_row.appendChild(empty_tiles[tile_index]);
 		}
-		return parent.outerHTML;
+		//return parent.outerHTML;
+		return parent;
 	}
 
 	var show_professional_page = function(){
@@ -211,9 +216,19 @@
 		global.$ajax(professional_snippet, function(responseText){
 			var professional_html=responseText;
 			global.$ajax(professional_tile_snippet, function(responseText){
-				var html = generate_professional_page(professional_array, 
+				var dom_content = generate_professional_page(professional_array, 
 					professional_html, responseText);
-				insert_html(html, ".main-content");
+				//try converting to dom, insert it in a jquery way to main content
+				// then attach the event using the .on event handler
+
+				//var main_content_dom = html_to_dom(dom_content);
+
+				//in this function the approach for inserting child elements 
+				//changed than the mainpage so we need to clear showloading 
+				clear_loading(".main-content");
+
+				document.querySelector(".main-content").appendChild(dom_content);
+				//insert_html(html, ".main-content");
 
 			}, 
 			false);
