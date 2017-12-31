@@ -149,7 +149,10 @@
 				new_div = html_to_dom(temp);
 				tiles.push(new_div);
 
-				
+				new_div.addEventListener("click", function(){
+					console.log("Hit");	
+				});
+				/*
 				new_div.querySelector(
 					".clickable_tile").on("click", ) = function(event){
 						console.log("Hi");};
