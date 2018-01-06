@@ -13,6 +13,8 @@
 	var pink_scale = ["#F57D7C", "#F79796", "#F9B1B0", "#FBCBCA", "#FDE5E4", "#FFFFFF"];
 	var salmon_scale = ["#FFC1A9", "#FFCDBA", "#FFD9CB", "#FFE6DC", "#FFF2ED", "#FFFFF"];
 	var beige_scale = ["#FEE4C4", "#FEE9CF", "#FEEEDB", "#FEF4E7", "#FEF9F3", "#FFFFFF"];
+
+	var colors = [green_scale, teal_scale, pink_scale, salmon_scale, beige_scale];
 	
 
 	//utility functions:
@@ -39,10 +41,11 @@
 		return string;
 	}
 
+
 	var tile_click = function(event){
-		//if we add more p.description elements then we might need to make changes
-		console.log(event.currentTarget.querySelector("p.description").innerHTML);
+		//if we need additional functionality to the click we can write it here
 	}
+
 
 	var tile_hover = function(event){
 
@@ -107,13 +110,34 @@
 	}, 
 	{
 		name: "NCR",
-		titles: [],
-		points: [] //array of objects with the points for each
-	},
+		tiles: ["Smart Queue for Bank Services"],
+		proj_data: [{
+			description: "NCR proj description",
+			image_link: "" 
+		}] //end of proj_data
+	}, //end of ncr
 	{
-		name: "AUC", 
-		titles: [],
-		points: []
+		name: "AUC Coursework", 
+		tiles: ["Object Oriented Programming C++",
+					"Computer Security", 
+					"Independent Study: NLP",
+					"Senior Project: PayPhone"], //end of titles
+		proj_data: [{
+			description: "lorem ipsum dolor sit amet",
+			image_link: ""
+		}, //oop
+		{
+			description: "lorem ipsum dolor sit amet",
+			image_link: ""
+		}, //security
+		{
+			description: "lorem ipsum dolor sit amet",
+			image_link: ""
+		}, //indepe study
+		{
+			description: "lorem ipsum dolor sit amet", 
+			image_link: ""
+		}] //payphone //end of proj data
 	}];
 
 
@@ -126,7 +150,7 @@
 
 	//update function to take in the object for which
 	//we are generating a color row
-	var generate_color_row = function(color_array, num, rowlen, snippet){
+	var generate_color_row = function(color_array, num, rowlen, snippet, job){
 		//rowlen is the minimum row length.
 		//it is only necessary if we apply more complicated gradients
 		//for now all rows are made of 6.
@@ -141,10 +165,9 @@
 				var tile_title;
 				var tile_desc;
 				//check if undefined would give 0
-				if(el_num < professional_array[0].tiles.length){
-					console.log(professional_array[0].tiles[el_num]);
-					tile_title = professional_array[0].tiles[el_num];
-					tile_desc = professional_array[0].proj_data[el_num].description;
+				if(el_num < job.tiles.length){
+					tile_title = job.tiles[el_num];
+					tile_desc = job.proj_data[el_num].description;
 				}
 				else{
 					tile_title = "";
@@ -202,22 +225,30 @@
 	var generate_professional_page = function(professional_array,
 		professional_snippet, professional_tile_snippet){
 		var res="";
-		/*simple function for now*/
-		var tile_info = professional_array[0].tiles;
-		var empty_tiles = generate_color_row(green_scale, 
-						tile_info.length, 6, professional_tile_snippet);
 
-		professional_snippet = insert_property(professional_snippet, "title", 
-				professional_array[0].name);
+		var tile_info;
+		var empty_tile_rows = [];
+		for(var i=0; i<professional_array.length; i++){
+			empty_tile_rows.push(generate_color_row(colors[i%colors.length], 
+				professional_array[i].tiles.length, 6, professional_tile_snippet, professional_array[i]));
+		} 
+		//empty tiles has the colored tiles of all tiles in the prof array
+		professional_page_rows = document.createElement("div");
+		
+		for(i=0; i<empty_tile_rows.length; i++){
+			var updated_snippet = insert_property(professional_snippet, "title", 
+				professional_array[i].name);
+			
+			var parent = html_to_dom(updated_snippet);
+			var parent_row = parent.querySelector(".row");
 
-		var parent = html_to_dom(professional_snippet);
-		var parent_row = parent.querySelector(".row");
-
-		for(var tile_index=0; tile_index<empty_tiles.length; tile_index++){
-			parent_row.appendChild(empty_tiles[tile_index]);
+			var empty_tiles = empty_tile_rows[i];
+			for(var tile_index=0; tile_index<empty_tiles.length; tile_index++){
+				parent_row.appendChild(empty_tiles[tile_index]);
+			}
+			professional_page_rows.appendChild(parent);
 		}
-		//return parent.outerHTML;
-		return parent;
+		return professional_page_rows;
 	}
 
 	var show_professional_page = function(){
@@ -291,14 +322,14 @@
 		}
 		else{
 			section_well = event.path[3].children[2];
+			//path[3] selects the relevant section, children[2] selects the row_selection
 		}
 		// children[1] selects invisible div
 		var new_text = event_element.children[1].children[0].innerHTML;
 		section_well.firstElementChild.innerText = new_text;
-		//path[3] selects the relevant section, children[2] selects the row_selection
-
+		
 		$("."+section_well.classList[0]).collapse({ toggle: true});
-		//section_well.collapse({toggle: true});
+
 	}
 
 	$(function(){
