@@ -328,7 +328,7 @@
 		var new_text = event_element.children[1].children[0].innerHTML;
 		section_well.firstElementChild.innerText = new_text;
 		
-		$("."+section_well.classList[0]).collapse({ toggle: true});
+		$(section_well).collapse({ toggle: true});
 
 	}
 
