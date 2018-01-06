@@ -152,7 +152,7 @@
 				}
 				
 				var temp = insert_property(snippet, "bkgnd", color_array[col%rowlen]);
-				temp = insert_property(temp, "description", tile_desc);
+				temp = insert_property(temp, "description", tile_desc+col);
 				temp = insert_property(temp, "title", tile_title);
 
 				new_div = html_to_dom(temp);
@@ -273,6 +273,33 @@
 		false);
 	}
 
+	var update_expandable_area = function (event){
+		//this is possibly not the best way to handle things but whatever
+		console.log(event);
+		var event_element = event.srcElement;
+		var section_well;
+
+		if(event.srcElement.className != "clickable_tile"){ //then it must be a child..
+			for(var i=0; i<event.path.length; i++){
+				var e = event.path[i];
+				if(e.className =="clickable_tile"){
+					event_element = e;
+				}
+				if(e.className == "section profpage"){ //change to be more inclusive to other classes
+					section_well = e.children[2];
+				}
+			}
+		}
+		else{
+			section_well = event.path[3].children[2];
+		}
+		// children[1] selects invisible div
+		var new_text = event_element.children[1].children[0].innerHTML;
+		section_well.firstElementChild.innerText = new_text;
+		//path[3] selects the relevant section, children[2] selects the row_selection
+		$("#row_selection").collapse({ toggle: true});
+	}
+
 	$(function(){
 		show_main_content();
 	});
@@ -281,6 +308,7 @@
 	global.$show_professional_page = show_professional_page;
 	global.$show_cv_page = show_cv_page;
 	global.$show_personal_page = show_personal_page;
+	global.$update_expandable_area = update_expandable_area;
 
 	
 })(window); //there was no need to pass the window obj as we're not exposing
