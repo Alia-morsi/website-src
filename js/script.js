@@ -285,7 +285,7 @@
 				if(e.className =="clickable_tile"){
 					event_element = e;
 				}
-				if(e.className == "section profpage"){ //change to be more inclusive to other classes
+				if(e.classList && e.classList.length > 0 && e.classList[0] == "section"){ //change to be more inclusive to other classes
 					section_well = e.children[2];
 				}
 			}
