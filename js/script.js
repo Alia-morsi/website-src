@@ -275,7 +275,6 @@
 
 	var update_expandable_area = function (event){
 		//this is possibly not the best way to handle things but whatever
-		console.log(event);
 		var event_element = event.srcElement;
 		var section_well;
 
@@ -297,7 +296,9 @@
 		var new_text = event_element.children[1].children[0].innerHTML;
 		section_well.firstElementChild.innerText = new_text;
 		//path[3] selects the relevant section, children[2] selects the row_selection
-		$("#row_selection").collapse({ toggle: true});
+
+		$("."+section_well.classList[0]).collapse({ toggle: true});
+		//section_well.collapse({toggle: true});
 	}
 
 	$(function(){
